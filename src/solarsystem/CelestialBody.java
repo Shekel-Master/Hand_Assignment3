@@ -1,27 +1,31 @@
 package solarsystem;
 
 import exceptions.DuplicateCelestialBodyException;
-import java.util.ArrayList;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Dylan Hand
  * Student ID: 7745
- * date: 02/22/2024
+ * date: 03/22/2024
  * This class is the implementation of CelestialBody
  */
 
-public class CelestialBody
+public class CelestialBody extends Circle
 {
     private String name;
     private String type;
     List<CelestialBody> children = new ArrayList<>();
 
-    public CelestialBody(String name, String type)
+    public CelestialBody(String name, String type, Color color, double radius)
     {
         this.name = name;
         this.type = type;
+        this.setFill(color);
+        this.setRadius(radius);
     }
 
     /**
@@ -42,6 +46,12 @@ public class CelestialBody
         return type;
     }
 
+    public void getInformation()
+    {
+        System.out.println("This is the " + getType() + " " + getName());
+    }
+    //returns a simple print out about celestial body
+
     /**
      * Adds a celestialbody child
      * @param celestialBody the celestialbody that is going to be added
@@ -49,13 +59,15 @@ public class CelestialBody
      */
     public void add(CelestialBody celestialBody) throws DuplicateCelestialBodyException
     {
-        for (CelestialBody child : getChildren())
+        if(children.contains(celestialBody))
         {
-            if (child.getName().equalsIgnoreCase(celestialBody.getName()))
-                throw new DuplicateCelestialBodyException(celestialBody);
+            throw new DuplicateCelestialBodyException("The " + celestialBody + " is already in the collection");
         }
-        getChildren().add(celestialBody);
-        System.out.println("The " + celestialBody.getType() + " " + celestialBody.getName() + " " + "was added succesfully to " + getName());
+        else
+        {
+            children.add(celestialBody);
+            System.out.println(celestialBody.getName() + " was successfully added to " + getName());
+        }
     }
 
     /**

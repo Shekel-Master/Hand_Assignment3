@@ -2,10 +2,12 @@ package solarsystem;
 
 import exceptions.InvalidCelestialBodyException;
 
+import javafx.scene.paint.Color;
+
 /**
  * @author Dylan Hand
  * Student ID: 7745
- * date: 02/22/2024
+ * date: 03/22/2024
  * This class is the implementation of Moon
  */
 public class Moon extends CelestialBody implements IOrbit
@@ -18,18 +20,26 @@ public class Moon extends CelestialBody implements IOrbit
      * @param orbits The moon's orbit
      * @throws InvalidCelestialBodyException
      */
-    public Moon(String name, CelestialBody orbits) throws InvalidCelestialBodyException
+    public Moon(String name, CelestialBody orbits, Color color, double radius) throws InvalidCelestialBodyException
     {
-        super(name, "moon");
+        super(name, "moon", color, radius);
         if (orbits instanceof solarsystem.Planet)
             this.orbits = orbits;
         else
-            throw new InvalidCelestialBodyException(this, orbits);
+            throw new InvalidCelestialBodyException("A moon must orbit a planet");
     }
 
     @Override
-    public void getOrbit()
+    public CelestialBody getOrbit()
     {
-        System.out.println(getName() + " is orbiting the Planet " + orbits.getName());
+        return orbits;
     }
+    //returns the orbits variable
+
+    @Override
+    public void getOrbitInformation()
+    {
+        System.out.println( getName() + " Orbits the planet " + orbits.getName());
+    }
+    //returns information about what planet it is orbiting
 }

@@ -1,7 +1,5 @@
 package exceptions;
 
-import solarsystem.CelestialBody;
-
 /**
  * @author Dylan Hand
  * Student ID: 7745
@@ -10,8 +8,8 @@ import solarsystem.CelestialBody;
  */
 public class InvalidCelestialBodyException extends Exception
 {
-    public <T extends CelestialBody> InvalidCelestialBodyException(T celestialBody1,T celestialBody2)
+    public InvalidCelestialBodyException (String argMessage)
     {
-        System.out.println("A " + celestialBody1.getName() + " must orbit a " + celestialBody2.getName());
+        super(argMessage);
     }
 }

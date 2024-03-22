@@ -1,7 +1,5 @@
 package exceptions;
 
-import solarsystem.CelestialBody;
-
 /**
  * @author Dylan Hand
  * Student ID: 7745
@@ -10,8 +8,8 @@ import solarsystem.CelestialBody;
  */
 public class DuplicateCelestialBodyException extends Exception
 {
-    public DuplicateCelestialBodyException(CelestialBody celestialBody)
+    public DuplicateCelestialBodyException (String argMessage)
     {
-        System.out.println("The " + celestialBody.getType() + " " + celestialBody.getName() + " is already in the collection");
+        super(argMessage);
     }
 }
